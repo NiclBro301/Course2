@@ -19,7 +19,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from women.views import index, category
+from women.views import main, one, two, student, slug
 
 urlpatterns = [
     path('admin/', admin.site.urls),
