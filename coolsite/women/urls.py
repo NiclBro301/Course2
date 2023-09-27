@@ -20,9 +20,9 @@ from django.urls import path
 from women.views import *
 
 urlpatterns = [
-    path('', main),
+    path('', main, name='home'),
     path('one/', one),
     path('two/', two),
     path('student/<int:student_id>/', student),
-    path('slug/', slug),
+    path('slug/<slug:slug1>/', slug),
 ]
