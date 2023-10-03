@@ -25,4 +25,7 @@ urlpatterns = [
     path('two/', two),
     path('student/<int:student_id>/', student),
     path('slug/<slug:slug1>/', slug),
+    path('year/<int:year_id>/', years),
+    path('three/', three),
+    path('four/', four),
 ]
