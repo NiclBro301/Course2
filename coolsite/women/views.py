@@ -6,11 +6,13 @@ from django.shortcuts import render, redirect
 #Модуль для хранения представлений
 # Create your views here.
 
+menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+
 def main(request):
-    res = request.GET
-    print(request.GET)
-    return HttpResponse(f'<h1>Добро-пожаловать на сервер "{dict(res)}"</h1><br>'
-                        f'<h2>Напиши после / сначала one, потом two, потом ещё что-нибудь:)</h2>')
+    data = {'title':'Главная страница',
+            'menu': menu,
+            }
+    return render(request, 'women/index.html', data)
 
 def one(request):
     raise serverError(exception=500)
@@ -20,7 +22,7 @@ def two(request):
                                  'Тут неуютно и пахнет сыростью..</h1>')
 
 def three(request):
-    return redirect('/student/1/', permanent=True)
+    return redirect('student/1/', permanent=True)
 
 def four(request):
     return redirect('/year/2000/', permanent=True)
@@ -45,6 +47,9 @@ def years(request, year_id):
                                       'Попробуйте ещё раз :(</h1>')
     else:
         return HttpResponse(f'<img src="{year[year_id]}" alt="{year_id}">')
+
+def category(request,cat_id):
+    return HttpResponse(f'<h1>Абоба {cat_id}</h1>')
 
 
 ##################################################################################################################
