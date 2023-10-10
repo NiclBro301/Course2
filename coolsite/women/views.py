@@ -1,17 +1,28 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseServerError, HttpResponseBadRequest, \
     HttpResponseForbidden
 from django.shortcuts import render, redirect
-
+from django.db import models
 
 #Модуль для хранения представлений
 # Create your views here.
 
 menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+list = {'Это', 'список', 'хороший', 'очень', 'мне', 'очень', 'нравится'}
+dict = {'Это':'словарь', 'тоже':'очень', 'красивый':'да'}
+
 
 def main(request):
     data = {'title':'Главная страница',
             'menu': menu,
+            'list': list,
+            'dict': dict,
+            'int': 18,
+            'float': 2.13968102,
+            'str': "'Я люблю Django very much'",
+            'bool': True,
+            'null': "",
             }
+
     return render(request, 'women/index.html', data)
 
 def one(request):
@@ -42,14 +53,17 @@ def slug(request, slug1):
                         f'<h1>{slug1}</h1>')
 
 def years(request, year_id):
-    if year_id > 2014 or year_id < 2000:
+    if year_id == 2023:
+        return redirect('/year/2007/')
+    elif year_id > 2014 or year_id < 2000:
         return HttpResponseBadRequest('<h1>Ваш запрос сервер почему-то не смог прожевать<br>'
                                       'Попробуйте ещё раз :(</h1>')
     else:
         return HttpResponse(f'<img src="{year[year_id]}" alt="{year_id}">')
 
 def category(request,cat_id):
-    return HttpResponse(f'<h1>Абоба {cat_id}</h1>')
+    return HttpResponse(f'<h1>{cat_id}</h1><br>'
+                        f'<h2>Очень хорошая буковка, красивая :)</h2>')
 
 
 ##################################################################################################################
@@ -119,5 +133,5 @@ year = {
     2011: 'https://nauca.com.ua/wp-content/uploads/2011/12/2011.jpg',
     2012: 'https://upload.wikimedia.org/wikipedia/ru/d/dd/2012_Poster.jpg',
     2013: 'https://informatio.ru/upload/iblock/48c/140130mogoijil.jpg',
-    2014: 'https://www.ural56.ru/upload/iblock/0e8/0e80488a95a55f030599ef6d5667fae6.jpg'
+    2014: 'https://icdn.lenta.ru/images/2014/12/24/17/20141224170914709/pic_f239271ce9cff39efe3b7bc01ad7168a.jpg'
 }

@@ -3,12 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+    <style>
+        .text {
+            font-size: 25px;
+            line-height: 30px;
+        }
+        .container {
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 <h1>Добро-пожаловать на сервер "Шизофрения"</h1>
 <h2>{{title}}</h2>
+<img src="https://64.media.tumblr.com/f901397da13298e6290d664be1c524b6/tumblr_mjxkgrKUDI1qi6mxao1_400.gifv">
 <img src="https://media.discordapp.net/attachments/997195974315360396/1097183341943464057/EF2F2635-6AD1-4EE6-8E86-55FDC855BFBC.gif">
+<img src="https://64.media.tumblr.com/tumblr_lpc46oU6Cy1qi1pnpo1_500.gifv">
 <br>{{menu}}
-
+<br>
+<h1>А теперь посмотим на различные типы данных✨</h1>
+<ul class="container">
+    <li>int - {{int}}</li>
+    <li>float - {{float|floatformat:3}}</li>
+    <li>str - {{str}}</li>
+    <li>bool - {{bool}}</li>
+    <li>list - {{list}}</li>
+    <li>dict - {{dict}}</li>
+    <li>array - {{menu}}</li>
+</ul><br>
+<p class="text">
+    {% filter force_escape|lower %}
+        ЭТОТ ТЕКСТ БУДЕТ МАЛЕНЬКИМИ БУКОВКАМИ, ХОТЯ НАПИСАН КАПСОМ
+    {% endfilter %}<br>
+    {% filter force_escape|upper %}
+        а тут наоборот уже
+    {% endfilter %}<br>
+    {{ int|add:"5"}} - А это тот же int но +5<br>
+    {{ str|addslashes}} - А это str но с добавленными слэшами<br>
+    {{ str|cut:" " }} - А тут из str убрали пробелы<br>
+    {{ null|default:"Тут пустая строка" }}<br>
+    {{ menu|first }} - Это первый элемент массива menu<br>
+    {{ menu|join:" // " }} - А это menu с разделителями между элементов<br>
+    {{ menu|random }} - это случайный элемент массива<br>
+    {{ str|slugify }} - А это str только slugify<br>
+    {{ float|stringformat:"E" }} - Это float но только в научном виде<br>
+    {{ str|truncatechars:10 }} - Продолжение следует...<br>
+    В str {{ str|wordcount }} слов!<br>
+</p>
+конец домашки.. Т-Т
 </body>
 </html>

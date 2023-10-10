@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, register_converter
 
-from women.class_rout import FourDigitYearConverter
+from women.class_rout import AlphabetConverter
 from women.views import *
 
-register_converter(FourDigitYearConverter, "yyyy")
+register_converter(AlphabetConverter, "alph")
 
 urlpatterns = [
     path('', main, name='home'),
@@ -31,5 +31,5 @@ urlpatterns = [
     path('year/<int:year_id>/', years),
     path('three/', three),
     path('four/', four),
-    path('articles/<yyyy:cat_id>/', category)
+    path('articles/<alph:cat_id>/', category)
 ]
