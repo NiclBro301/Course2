@@ -51,5 +51,26 @@
     В str {{ str|wordcount }} слов!<br>
 </p>
 конец домашки.. Т-Т
+<br>
+
+<ul>
+    {% for p in posts %}
+    <li>
+        <h2>{{p.FIO}}</h2>
+        <p>{{p.interesting}}</p>
+
+        {% if p.is_sport == True %}
+        <h2>Спортсмем!</h2>
+        {% endif %}
+
+        <p><a href="{% url 'student' p.id %}">Чтооооооо</a></p>
+
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
 </body>
 </html>

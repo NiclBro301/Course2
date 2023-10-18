@@ -6,10 +6,18 @@ from django.db import models
 #Модуль для хранения представлений
 # Create your views here.
 
-menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+menu = [{'title': 'Главное', 'url_name': 'home'},
+        {'title': 'О сайте', 'url_name': 'about'}, #СДЕЛАЙ ЭТУ СТРАНИЦУ Я ТЕБЯ УМОЛЯЮ ПРОШУ
+        {'title': 'Список студентов', 'url_name': 'students'}
+        ]
 list = {'Это', 'список', 'хороший', 'очень', 'мне', 'очень', 'нравится'}
 dict = {'Это':'словарь', 'тоже':'очень', 'красивый':'да'}
 
+
+data_bd = [{'id':5, 'FIO': 'Гришин Никита Сергеевич', 'interesting': 'Литература, Музыка, Фотография, Вязание, Программирование', 'is_sport':False},
+            {'id':12, 'FIO': 'Ушаков Никита Юрьевич', 'interesting': 'Бокс, Плавание, Собирание марок, Туризм', 'is_sport':True},
+            {'id':11, 'FIO': 'Солодкий Никита Олегович', 'interesting': 'Игры, Плетение бисером, Велосипед, Тренажёрный зал', 'is_sport':True},
+           ]
 
 def main(request):
     data = {'title':'Главная страница',
@@ -21,9 +29,10 @@ def main(request):
             'str': "'Я люблю Django very much'",
             'bool': True,
             'null': "",
+            'posts': data_bd,
             }
 
-    return render(request, 'women/index.html', data)
+    return render(request, 'women/index.html', context=data)
 
 def one(request):
     raise serverError(exception=500)
@@ -65,7 +74,13 @@ def category(request,cat_id):
     return HttpResponse(f'<h1>{cat_id}</h1><br>'
                         f'<h2>Очень хорошая буковка, красивая :)</h2>')
 
-
+def post_detail(request):
+    res = request.GET
+    t = dict(res)
+    a=''
+    for key,value in t.items():
+        a+=f'{key}={value[0]}|'
+    return HttpResponse(f'<h1>Добро-пожаловать на сервер "{a}"</h1>')
 ##################################################################################################################
 
 
