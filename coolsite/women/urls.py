@@ -33,5 +33,5 @@ urlpatterns = [
     path('three/', three),
     path('four/', four),
     path('articles/<alph:cat_id>/', category),
-
+    path('about/', about, name='about')
 ]

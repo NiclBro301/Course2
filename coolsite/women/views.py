@@ -7,20 +7,21 @@ from django.db import models
 # Create your views here.
 
 menu = [{'title': 'Главное', 'url_name': 'home'},
-        {'title': 'О сайте', 'url_name': 'about'}, #СДЕЛАЙ ЭТУ СТРАНИЦУ Я ТЕБЯ УМОЛЯЮ ПРОШУ
+        {'title': 'О сайте', 'url_name': 'about'},
         {'title': 'Список студентов', 'url_name': 'students'}
         ]
+
 list = {'Это', 'список', 'хороший', 'очень', 'мне', 'очень', 'нравится'}
-dict = {'Это':'словарь', 'тоже':'очень', 'красивый':'да'}
+dict = {'Это': 'словарь', 'тоже': 'очень', 'красивый': 'да'}
 
 
-data_bd = [{'id':5, 'FIO': 'Гришин Никита Сергеевич', 'interesting': 'Литература, Музыка, Фотография, Вязание, Программирование', 'is_sport':False},
-            {'id':12, 'FIO': 'Ушаков Никита Юрьевич', 'interesting': 'Бокс, Плавание, Собирание марок, Туризм', 'is_sport':True},
-            {'id':11, 'FIO': 'Солодкий Никита Олегович', 'interesting': 'Игры, Плетение бисером, Велосипед, Тренажёрный зал', 'is_sport':True},
+data_bd = [{'id':5, 'FIO': 'Гришин Никита Сергеевич', 'interesting': 'Литература, Музыка, Фотография, Вязание, Программирование', 'is_sport': False},
+            {'id':12, 'FIO': 'Ушаков Никита Юрьевич', 'interesting': 'Бокс, Плавание, Собирание марок, Туризм', 'is_sport': True},
+            {'id':11, 'FIO': 'Солодкий Никита Олегович', 'interesting': 'Игры, Плетение бисером, Велосипед, Тренажёрный зал', 'is_sport': True},
            ]
 
 def main(request):
-    data = {'title':'Главная страница',
+    data = {'title': 'Главная страница',
             'menu': menu,
             'list': list,
             'dict': dict,
@@ -33,6 +34,15 @@ def main(request):
             }
 
     return render(request, 'women/index.html', context=data)
+
+def about(request):
+    data={'menu': menu}
+
+    #{% for p in menu %}
+    #<a href="{% url '{{p.url_name}}' %}">{{p.title}}</a>
+    #{% endfor %} ОНО НЕ РАБОТАЕТ ПОМОГИТЕЕЕЕ
+
+    return render(request, 'women/about.html', context=data)
 
 def one(request):
     raise serverError(exception=500)

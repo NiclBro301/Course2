@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <title>{{title}}</title>
     <style>
-        .text {
-            font-size: 25px;
-            line-height: 30px;
-        }
-        .container {
-            font-size: 20px;
-        }
+        #это css
     </style>
 </head>
 <body>
@@ -31,36 +25,27 @@
     <li>dict - {{dict}}</li>
     <li>array - {{menu}}</li>
 </ul><br>
-<p class="text">
-    {% filter force_escape|lower %}
-        ЭТОТ ТЕКСТ БУДЕТ МАЛЕНЬКИМИ БУКОВКАМИ, ХОТЯ НАПИСАН КАПСОМ
-    {% endfilter %}<br>
-    {% filter force_escape|upper %}
-        а тут наоборот уже
-    {% endfilter %}<br>
-    {{ int|add:"5"}} - А это тот же int но +5<br>
-    {{ str|addslashes}} - А это str но с добавленными слэшами<br>
-    {{ str|cut:" " }} - А тут из str убрали пробелы<br>
-    {{ null|default:"Тут пустая строка" }}<br>
-    {{ menu|first }} - Это первый элемент массива menu<br>
-    {{ menu|join:" // " }} - А это menu с разделителями между элементов<br>
-    {{ menu|random }} - это случайный элемент массива<br>
-    {{ str|slugify }} - А это str только slugify<br>
-    {{ float|stringformat:"E" }} - Это float но только в научном виде<br>
-    {{ str|truncatechars:10 }} - Продолжение следует...<br>
-    В str {{ str|wordcount }} слов!<br>
-</p>
+
 конец домашки.. Т-Т
 <br>
 
 <ul>
     {% for p in posts %}
+    {% if forloop.first %}
+        <h1>СПИСОК СТУДЕНТОВ:</h1>
+    {% endif %}
     <li>
-        <h2>{{p.FIO}}</h2>
+        <h2>{{ forloop.counter }}. {{p.FIO}}</h2>
         <p>{{p.interesting}}</p>
 
         {% if p.is_sport == True %}
         <h2>Спортсмем!</h2>
+        {% endif %}
+
+        {% if p.id|divisibleby:"2" %}
+            Номер кстати чётный
+        {% else %}
+            Номер кстати нечётный
         {% endif %}
 
         <p><a href="{% url 'student' p.id %}">Чтооооооо</a></p>
@@ -68,9 +53,18 @@
         {% if not forloop.last %}
         <hr>
         {% endif %}
+
+        {% if forloop.counter0 >= 2 %}
+        <h1>Конец списка.</h1>
+        {% endif %}
+
     </li>
     {% endfor %}
-</ul>
+</ul><br>
+
+<a href="{% url 'home' %}">Главная</a>
+<a href="{% url 'about' %}">О сайте</a>
+<a href="{% url 'student' 1 %}">Студенты</a>
 
 </body>
 </html>
