@@ -8,7 +8,8 @@ from django.db import models
 
 menu = [{'title': 'Главное', 'url_name': 'home'},
         {'title': 'О сайте', 'url_name': 'about'},
-        {'title': 'Список студентов', 'url_name': 'students'}
+        {'title': 'Кубик смотреть онлайн', 'url_name':'cube'},
+        {'title': 'Список студентов', 'url_name': 'students'},
         ]
 
 
@@ -81,6 +82,8 @@ def post_detail(request):
     for key,value in t.items():
         a+=f'{key}={value[0]}|'
     return HttpResponse(f'<h1>Добро-пожаловать на сервер "{a}"</h1>')
+def cube(request):
+    return render(request, 'women/3D_kub.html')
 ##################################################################################################################
 
 
