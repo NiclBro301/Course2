@@ -27,7 +27,7 @@ urlpatterns = [
     path('post_detail/', post_detail),
     path('one/', one),
     path('two/', two),
-    path('student/<int:student_id>/', student, name='student'),
+    path('student/<int:student_id>/', student, name='students'),
     path('slug/<slug:slug1>/', slug),
     path('year/<int:year_id>/', years),
     path('three/', three),

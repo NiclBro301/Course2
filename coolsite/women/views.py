@@ -11,8 +11,6 @@ menu = [{'title': 'Главное', 'url_name': 'home'},
         {'title': 'Список студентов', 'url_name': 'students'}
         ]
 
-list = {'Это', 'список', 'хороший', 'очень', 'мне', 'очень', 'нравится'}
-dict = {'Это': 'словарь', 'тоже': 'очень', 'красивый': 'да'}
 
 
 data_bd = [{'id':5, 'FIO': 'Гришин Никита Сергеевич', 'interesting': 'Литература, Музыка, Фотография, Вязание, Программирование', 'is_sport': False},
@@ -21,19 +19,11 @@ data_bd = [{'id':5, 'FIO': 'Гришин Никита Сергеевич', 'inte
            ]
 
 def main(request):
-    data = {'title': 'Главная страница',
-            'menu': menu,
-            'list': list,
-            'dict': dict,
-            'int': 18,
-            'float': 2.13968102,
-            'str': "'Я люблю Django very much'",
-            'bool': True,
-            'null': "",
+    data = {'menu': menu,
             'posts': data_bd,
             }
 
-    return render(request, 'women/index.html', context=data)
+    return render(request, 'women/index.html', context=data,)
 
 def about(request):
     data={'menu': menu}

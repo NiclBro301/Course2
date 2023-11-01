@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-    <style>
-        #это css
-    </style>
-</head>
-<body>
+{% extends 'header.html' %}
+{% block content %}
+
 <h1>Добро-пожаловать на сервер "Шизофрения"</h1>
 <h2>{{title}}</h2>
 <img src="https://64.media.tumblr.com/f901397da13298e6290d664be1c524b6/tumblr_mjxkgrKUDI1qi6mxao1_400.gifv">
@@ -15,18 +8,7 @@
 <img src="https://64.media.tumblr.com/tumblr_lpc46oU6Cy1qi1pnpo1_500.gifv">
 <br>{{menu}}
 <br>
-<h1>А теперь посмотим на различные типы данных✨</h1>
-<ul class="container">
-    <li>int - {{int}}</li>
-    <li>float - {{float|floatformat:3}}</li>
-    <li>str - {{str}}</li>
-    <li>bool - {{bool}}</li>
-    <li>list - {{list}}</li>
-    <li>dict - {{dict}}</li>
-    <li>array - {{menu}}</li>
-</ul><br>
 
-конец домашки.. Т-Т
 <br>
 
 <ul>
@@ -48,7 +30,7 @@
             Номер кстати нечётный
         {% endif %}
 
-        <p><a href="{% url 'student' p.id %}">Чтооооооо</a></p>
+        <p><a href="{% url 'students' p.id %}">Чтооооооо</a></p>
 
         {% if not forloop.last %}
         <hr>
@@ -62,9 +44,5 @@
     {% endfor %}
 </ul><br>
 
-<a href="{% url 'home' %}">Главная</a>
-<a href="{% url 'about' %}">О сайте</a>
-<a href="{% url 'student' 1 %}">Студенты</a>
 
-</body>
-</html>
+{% endblock %}
