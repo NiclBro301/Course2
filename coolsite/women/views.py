@@ -8,31 +8,17 @@ from django.db import models
 
 menu = [{'title': 'Главное', 'url_name': 'home'},
         {'title': 'О сайте', 'url_name': 'about'},
-        {'title': 'Кубик смотреть онлайн', 'url_name':'cube'},
+        {'title': 'Кубик смотреть онлайн', 'url_name': 'cube'},
         {'title': 'Список студентов', 'url_name': 'students'},
         ]
 
-
-
-data_bd = [{'id':5, 'FIO': 'Гришин Никита Сергеевич', 'interesting': 'Литература, Музыка, Фотография, Вязание, Программирование', 'is_sport': False},
-            {'id':12, 'FIO': 'Ушаков Никита Юрьевич', 'interesting': 'Бокс, Плавание, Собирание марок, Туризм', 'is_sport': True},
-            {'id':11, 'FIO': 'Солодкий Никита Олегович', 'interesting': 'Игры, Плетение бисером, Велосипед, Тренажёрный зал', 'is_sport': True},
-           ]
-
 def main(request):
-    data = {'menu': menu,
-            'posts': data_bd,
-            }
+    data = {'menu': menu,}
 
-    return render(request, 'women/index.html', context=data,)
+    return render(request, 'women/index.html', context=data)
 
 def about(request):
     data={'menu': menu}
-
-    #{% for p in menu %}
-    #<a href="{% url '{{p.url_name}}' %}">{{p.title}}</a>
-    #{% endfor %} ОНО НЕ РАБОТАЕТ ПОМОГИТЕЕЕЕ
-
     return render(request, 'women/about.html', context=data)
 
 def one(request):
@@ -48,14 +34,10 @@ def three(request):
 def four(request):
     return redirect('/year/2000/', permanent=True)
 
-def student(request, student_id):
-    if student_id > 13 or student_id < 1:
-        return HttpResponseBadRequest('<h1>Ваш запрос сервер почему-то не смог прожевать<br>'
-                                  'Попробуйте ещё раз :(</h1>')
-    else:
-        return HttpResponse(f' <h1> Студент № {student_id}</h1><br>'
-                            f'<h2>{students[student_id]}</h2><br>'
-                            f'<h2>{geburgstag[student_id]}</h2>')
+def student(request):
+    data = {'students': students,
+            'menu': menu, }
+    return render(request, 'women/students.html', context=data)
 
 def slug(request, slug1):
     return HttpResponse('<h1>Взгляни в адресную строку после "/"</h1>'
@@ -104,37 +86,21 @@ def forbidden(request, exception):
 
 ##################################################################################################################
 
-students = {
-    1:"Андронов Назар",
-    2:"Андрюхин Даниил",
-    3:"Асадов Наил",
-    4:"Виноградский Иван",
-    5:"Гришин Никита",
-    6:"Ковалев Егор",
-    7:"Короткая София",
-    8:"Маганков Кирилл",
-    9:"Палий Константин",
-    10:"Покровский Данила",
-    11:"Солодкий Никита",
-    12:"Ушаков Никита",
-    13:"Куленок Станислав"
-}
-
-geburgstag = {
-    1: '09.05.2004',
-    2: 'Мы не знаем, живой ли он вообще',
-    3: '30.11.2004',
-    4: '31.04.2004',
-    5: '09.01.2004',
-    6: '02.09.2004',
-    7: '21.03.988',
-    8: '14.06.2004',
-    9: '05.12.2004',
-    10: '02.02.2004',
-    11: '04.07.2004',
-    12: '15.08.2001',
-    13: '32.13.2024'
-}
+students = [
+    {'name': "Андронов Назар", 'img': 'women/image/nazar.jpeg', 'year': '09.05.2004'},
+    {'name': "Андрюхин Даниил", 'img': 'women/image/andryuhin.jpeg', 'year': '(Мы не знаем, живой ли он вообще)'},
+    {'name': "Асадов Наил", 'img': 'women/image/asadov.jpg', 'year': '30.11.2004'},
+    {'name': "Виноградский Иван", 'img': 'women/image/vinogradskiy.jpg', 'year': '31.04.2004'},
+    {'name': "Гришин Никита", 'img': 'women/image/grishin.jpg', 'year': '09.01.2004'},
+    {'name': "Ковалев Егор", 'img': 'women/image/kovalev.jpg', 'year': '02.09.2004'},
+    {'name': "Короткая София", 'img': 'women/image/short.jpg', 'year': '21.03.988'},
+    {'name': "Маганков Кирилл", 'img': 'women/image/magankov.jpg', 'year': '14.06.2004'},
+    {'name': "Палий Константин", 'img': 'women/image/paliy.png', 'year': '05.12.2004'},
+    {'name': "Покровский Данила", 'img': 'women/image/pokrovskiy.jpeg', 'year': '02.02.2004'},
+    {'name': "Солодкий Никита", 'img': 'women/image/solodkiy.jpg', 'year': '04.07.2004'},
+    {'name': "Ушаков Никита", 'img': 'women/image/ushakov.jpg', 'year': '15.08.2001'},
+    {'name': "Куленок Станислав", 'img': 'women/image/kulenok.jpg', 'year': '32.13.2024'}
+]
 
 year = {
     2000: 'https://i.pinimg.com/originals/fa/f4/66/faf466336c77e2765619197a5785887b.jpg',

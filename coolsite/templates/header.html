@@ -1,23 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link type="text/css" href="{% static 'women/css/style.css' %}" rel="stylesheet">
 </head>
 <ul style="list-style-type: square; ">
     {% for m in menu %}
     <li>
 
-        {% if not forloop.last %}
-        <p><a href="{% url m.url_name %} ">
+        <p><a class="menu-button" href="{% url m.url_name %} ">
             {{m.title}}</a></p>
-        {% endif %}
-
-        {% if forloop.last %}
-        <p><a href="{% url m.url_name 1 %} ">
-            {{m.title}}</a></p>
-        {% endif %}
-
 
     </li>
     {% endfor %}

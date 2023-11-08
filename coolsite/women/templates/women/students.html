@@ -1,0 +1,19 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<h1>Список студентов ИВТ-201:</h1>
+
+<ul>
+    {% for s in students %}
+    <li>
+        <h2>{{ forloop.counter }}. {{ s.name }}</h2>
+        <p>{{ s.year }}</p>
+        <img src="{{ s.img }}", alt="Картинка студента">
+        {% if not forloop.last%}
+            <hr>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

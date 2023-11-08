@@ -1,0 +1,48 @@
+* {
+    padding: 0px;
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+ul {
+    display: flex-wrap;
+    justify-content: center;
+
+}
+
+li {
+    display: inline-block;
+}
+
+.menu-button {
+    box-shadow: 5px 5px 5px gray;
+    background-color:rgb(219, 219, 219);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0px;
+
+}
+
+.student-card {
+    background-color:rgb(219, 219, 219);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow: 12px 12px 20px gray;
+
+}
+
+.student-card-title {
+    font-size: 30px;
+    font-weight: 300;
+    margin-bottom: 15px;
+
+}
+
+.student-card-subtitle {
+    margin: 20px;
+}
+
+.student-card-img {
+    border-radius: 20px;
+}
