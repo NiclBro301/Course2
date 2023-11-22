@@ -30,3 +30,7 @@ python manage.py sqlmigrate women 0001   #просмотр sql запроса
 python manage.py migrate 
 
 """
+
+"""
+pythonmanage.pyshell_plus --print-sql улучшенная консоль
+"""
