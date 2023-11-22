@@ -32,5 +32,5 @@ python manage.py migrate
 """
 
 """
-pythonmanage.pyshell_plus --print-sql улучшенная консоль
+python manage.py shell_plus --print-sql улучшенная консоль
 """
